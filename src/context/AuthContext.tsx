@@ -3,8 +3,8 @@
 import { ReactNode, createContext, useState } from "react";
 
 type User = {
-  address: `0x${string}` | undefined;
-  likes?: number;
+  address?: `0x${string}`;
+  likes: number;
 };
 
 type AuthContextProps = {

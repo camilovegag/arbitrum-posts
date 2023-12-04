@@ -10,6 +10,7 @@ export default function Home() {
     id: number;
     title: string;
     body: string;
+    likes: number;
   };
 
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -19,7 +20,11 @@ export default function Home() {
       try {
         const data = await fetch("https://jsonplaceholder.typicode.com/posts");
         const json = await data.json();
-        setPosts(json);
+        const postsWithLikes = json.map((post: PostType) => ({
+          ...post,
+          likes: Math.floor(Math.random() * 10),
+        }));
+        setPosts(postsWithLikes);
       } catch (error) {
         console.error(error);
       }
@@ -36,7 +41,12 @@ export default function Home() {
       {isLogged && (
         <section className="grid">
           {posts.map((post) => (
-            <Post key={post.id} title={post.title} body={post.body} />
+            <Post
+              key={post.id}
+              title={post.title}
+              body={post.body}
+              likes={post.likes}
+            />
           ))}
         </section>
       )}

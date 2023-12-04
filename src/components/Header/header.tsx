@@ -4,16 +4,17 @@ import styles from "./header.module.css";
 import useAuth from "@/hooks/useAuth";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Image from "next/image";
+
+import Like from "@/components/Like";
 
 const Header = () => {
   const { authUser, setAuthUser, isLogged, setIsLogged } = useAuth();
 
   const account = useAccount({
-    onConnect({ address, isReconnected }) {
+    onConnect({ address }) {
       setAuthUser({
         address,
-        likes: 0,
+        likes: 10,
       });
       setIsLogged(true);
     },
@@ -29,15 +30,11 @@ const Header = () => {
         <h1 className={styles.logo}>LexCorp</h1>
         <nav className={styles.nav}>
           {isLogged && (
-            <div className={styles.like}>
-              <p className={styles.count}>{authUser?.likes}</p>
-              <Image
-                src="full_hearth.svg"
-                alt="Full Hearth"
-                width={24}
-                height={24}
-              />
-            </div>
+            <Like
+              amount={authUser?.likes}
+              status={authUser?.likes && authUser.likes > 0 ? "full" : "empty"}
+              clickable={false}
+            />
           )}
           <ConnectButton
             accountStatus={"avatar"}
