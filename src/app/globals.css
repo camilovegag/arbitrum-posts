@@ -8,7 +8,7 @@
 
 html {
   color-scheme: light dark;
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 
 body {
@@ -42,12 +42,9 @@ select {
 }
 
 @media (min-width: 600px) {
-  html {
-    font-size: 1.125rem;
-  }
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 }

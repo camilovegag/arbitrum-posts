@@ -112,7 +112,6 @@ export default function Home() {
       <h2>
         {isLogged ? "Read some cool posts" : "Log in to see some cool posts"}
       </h2>
-      <pre>{JSON.stringify(authUser?.likedPosts, null)}</pre>
       <br />
       {isLogged && (
         <section className="grid">

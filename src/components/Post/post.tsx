@@ -14,14 +14,20 @@ const Post = ({ title, body, likes, onLike, onUnlike }: PostProps) => {
     <article className={styles.post}>
       <p className={styles.title}>{title}</p>
       <p className={styles.body}>{body}</p>
-      <div className={styles.like}>
+      <div className={styles.likeContainer}>
         <Like
           amount={likes}
           status={likes > 0 ? "full" : "empty"}
           clickable={false}
         />
-        <button onClick={onUnlike}>Unlike</button>
-        <button onClick={onLike}>Like</button>
+      </div>
+      <div className={styles.buttons}>
+        <button className={styles.unlike} onClick={onUnlike}>
+          Unlike
+        </button>
+        <button className={styles.like} onClick={onLike}>
+          Like
+        </button>
       </div>
     </article>
   );

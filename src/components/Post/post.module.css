@@ -7,7 +7,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  min-height: 400px;
+  min-height: 250px;
 }
 
 .title::first-letter,
@@ -19,8 +19,41 @@
   font-weight: 500;
 }
 
-.like {
-  align-self: flex-end;
+.body {
+  margin-bottom: auto;
+}
+
+.likeContainer {
   margin-top: auto;
-  border-radius: 1rem;
+  align-self: flex-end;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.like,
+.unlike {
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  /* color: #213147; */
+  font-weight: 500;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.like {
+  background-color: #12aaff;
+}
+
+.unlike {
+  background-color: #8aa0af;
+}
+
+@media (min-width: 600px) {
+  .post {
+    min-height: 420px;
+  }
 }
