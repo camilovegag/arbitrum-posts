@@ -16,6 +16,30 @@
   font-size: 1.5rem;
 }
 
+.nav {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 12px;
+  height: 40px;
+  min-width: 64px;
+  gap: 4px;
+  padding: 10px;
+}
+
+.count {
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
 @media (min-width: 500px) {
   .logo {
     font-size: 2rem;
