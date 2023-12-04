@@ -8,13 +8,12 @@
 
 html {
   color-scheme: light dark;
+  font-size: 1rem;
 }
 
 body {
   font-family: system-ui;
-  font-size: 1.125rem;
   line-height: 1.6;
-  padding-block: 2rem;
 }
 
 img {
@@ -31,5 +30,12 @@ select {
 
 .content {
   margin-inline: auto;
+  padding-block: 2rem;
   width: min(65ch, 100% - 4rem);
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 1.125rem;
+  }
 }
