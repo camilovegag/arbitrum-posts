@@ -6,21 +6,19 @@ import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
-  const { setAuthUser, isLogged, setIsLogged } = useAuth();
+  const { setAuthUser, setIsLogged } = useAuth();
 
   const account = useAccount({
-    onConnect({ address }) {
-      setIsLogged(true);
+    onConnect({ address, isReconnected }) {
       setAuthUser({
         address,
         likes: 0,
       });
-      console.log("Connected", { address });
+      setIsLogged(true);
     },
     onDisconnect() {
       setIsLogged(false);
       setAuthUser(null);
-      console.log(`setting is logged to false ${isLogged}`);
     },
   });
 
