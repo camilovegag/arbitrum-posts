@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import styles from "./post.module.css";
 import Like from "@/components/Like";
 
@@ -5,11 +8,46 @@ type PostProps = {
   title: string;
   body: string;
   likes: number;
+  expirationTimestamp: number;
   onLike: () => void;
   onUnlike: () => void;
 };
 
-const Post = ({ title, body, likes, onLike, onUnlike }: PostProps) => {
+const Post = ({
+  title,
+  body,
+  likes,
+  expirationTimestamp,
+  onLike,
+  onUnlike,
+}: PostProps) => {
+  const calculateCountdown = () => {
+    const now = Date.now();
+    const timeRemaining = expirationTimestamp - now;
+
+    if (timeRemaining > 0) {
+      const seconds = Math.floor(timeRemaining / 1000) % 60;
+      const minutes = Math.floor(timeRemaining / (1000 * 60)) % 60;
+      const hours = Math.floor(timeRemaining / (1000 * 60 * 60)) % 24;
+
+      return `${hours}h ${minutes}m ${seconds}s`;
+    } else {
+      return "Expired";
+    }
+  };
+
+  const [countdown, setCountdown] = useState(calculateCountdown());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCountdown(calculateCountdown());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [expirationTimestamp]); // Run effect whenever expirationTimestamp changes
+
   return (
     <article className={styles.post}>
       <p className={styles.title}>{title}</p>
@@ -29,6 +67,7 @@ const Post = ({ title, body, likes, onLike, onUnlike }: PostProps) => {
           Like
         </button>
       </div>
+      <p className={styles.countdown}>Expires in: {countdown}</p>
     </article>
   );
 };

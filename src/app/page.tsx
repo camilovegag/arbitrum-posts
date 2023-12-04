@@ -11,7 +11,7 @@ export default function Home() {
     title: string;
     body: string;
     likes: number;
-    likedBy: { address: string; amount: number }[];
+    expirationTimestamp: number;
   };
 
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -24,6 +24,8 @@ export default function Home() {
         const postsWithLikes = json.map((post: PostType) => ({
           ...post,
           likes: Math.floor(Math.random() * 10),
+          expirationTimestamp:
+            Date.now() + Math.floor(Math.random() * 86400000), // Set expiration to a random value within 24 hours
         }));
         setPosts(postsWithLikes);
       } catch (error) {
@@ -121,6 +123,7 @@ export default function Home() {
               title={post.title}
               body={post.body}
               likes={post.likes}
+              expirationTimestamp={post.expirationTimestamp}
               onLike={() => handleLike(post.id)}
               onUnlike={() => handleUnlike(post.id)}
             />
