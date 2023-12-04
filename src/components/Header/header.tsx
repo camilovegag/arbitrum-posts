@@ -15,6 +15,7 @@ const Header = () => {
       setAuthUser({
         address,
         likes: 10,
+        likedPosts: [],
       });
       setIsLogged(true);
     },

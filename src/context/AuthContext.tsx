@@ -5,6 +5,7 @@ import { ReactNode, createContext, useState } from "react";
 type User = {
   address?: `0x${string}`;
   likes: number;
+  likedPosts: { id: number; likes: number }[];
 };
 
 type AuthContextProps = {
